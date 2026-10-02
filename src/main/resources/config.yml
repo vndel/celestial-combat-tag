@@ -1,0 +1,47 @@
+# ───────────────────────────────────────────────────────────────
+#  CelestialCombatTag
+#
+#  A server cannot refuse a client disconnect, so combat logging is
+#  handled by applying the outcome rather than blocking the exit:
+#  items drop where the player stood.
+# ───────────────────────────────────────────────────────────────
+
+tag:
+  # How long combat persists after the last hit.
+  # Long enough to prevent instant escape, short enough that a won
+  # fight does not keep the victor pinned.
+  duration-seconds: 15
+
+  # Placeholders: <seconds>  <opponent>
+  action-bar: '<red>⚔ In combat</red> <dark_gray>|</dark_gray> <white><seconds>s</white> <dark_gray>|</dark_gray> <gray><opponent></gray>'
+
+  notify-expiry: true
+
+  # Root commands blocked while tagged. Aliases and plugin-qualified
+  # forms (essentials:home) are normalised before matching.
+  blocked-commands:
+    - 'home'
+    - 'spawn'
+    - 'warp'
+    - 'tpa'
+    - 'tpahere'
+    - 'tpaccept'
+    - 'back'
+    - 'rtp'
+    - 'wild'
+    - 'hub'
+    - 'lobby'
+    - 'server'
+
+penalty:
+  # Drop the logger's inventory at their last position.
+  drop-inventory: true
+
+  # Return at minimum health, so logging out is not a free reset.
+  clear-health-on-return: true
+  return-health: 1.0
+
+  notify-opponent: true
+
+messages:
+  command-blocked: '<red>You cannot use that while in combat.</red>'
