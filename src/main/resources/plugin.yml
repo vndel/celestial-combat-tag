@@ -1,0 +1,21 @@
+name: CelestialCombatTag
+version: '${project.version}'
+main: com.fivemcodehub.celestial.CelestialPlugin
+api-version: '1.20'
+authors: [vndel]
+description: PvP combat tagging with logout penalties and action-bar status
+website: https://team.fivemcodehub.com
+
+commands:
+  combattag:
+    description: Combat tag diagnostics
+    usage: /combattag <status|clear|reload> [player]
+    permission: celestial.admin
+
+permissions:
+  celestial.admin:
+    description: Administrative access
+    default: op
+  celestial.bypass:
+    description: Never become combat tagged
+    default: false
